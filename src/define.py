@@ -26,6 +26,6 @@ SKIER_PNG_MAP = {
 	"flag": "skier_flag.png", 
 }
 DEFAULT_SKIER = SKIER_PNG_MAP[0]
+ICON_IMAGE = SKIER_PNG_MAP[-2]
 BACKGROUND_IMAGE = "background.jpg"
-
 MUSIC = "res/music.mp3"

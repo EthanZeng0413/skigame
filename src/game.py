@@ -20,7 +20,7 @@ class SkiingGame(pygame.sprite.Sprite):
         self.second_pos = Y_DIM 
         self.display_width = X_DIM
         self.display_height = Y_DIM
-        pygame.display.set_caption("滑雪大赛! Tips:使用左右方向键移动")
+        pygame.display.set_caption("滑雪大赛!  Tips: 使用左右方向键移动")
 
     def playmusic(self):
         pygame.mixer.music.load(MUSIC)
@@ -122,5 +122,7 @@ class Engine:
 if __name__ == "__main__":
     pygame.init()
     screen = pygame.display.set_mode((int(X_DIM), int(Y_DIM*1.3)))
+    icon, _ = utils.load_png(ICON_IMAGE)
+    pygame.display.set_icon(icon)
     # START GAME
     Engine(screen, skiing_obj.Player(screen)).playgame()
