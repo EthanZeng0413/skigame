@@ -15,9 +15,8 @@ class SkiingGame(pygame.sprite.Sprite):
         self.font = pygame.font.SysFont(("bauhaus93"), 35)
         self.smallfont = pygame.font.SysFont(("bauhaus93"), 25)
         self.surface, self.rect = utils.load_png(BACKGROUND_IMAGE)
-        self.bg_blit_offset = self.rect.height - 1
         self.speed = -1
-        self.pos_list = [0, self.bg_blit_offset]
+        self.pos_list = [0, self.rect.height]
         self.display_width = X_DIM
         self.display_height = Y_DIM
         pygame.display.set_caption("滑雪大赛!  Tips: 使用左右方向键移动")
@@ -28,14 +27,12 @@ class SkiingGame(pygame.sprite.Sprite):
 
     def draw_floor(self):
         """Displays game title and scrolls background image"""
-        for i, pos in enumerate(self.pos_list):
+        for i in range(len(self.pos_list)):
             self.pos_list[i] += self.speed
-            self.screen.blit(self.surface, (0, pos))
+            self.screen.blit(self.surface, (0, self.pos_list[i]))
 
-            if pos <= -self.bg_blit_offset:
-                self.pos_list[i] = self.bg_blit_offset
-
-        self.pos_list.sort(reverse=True)
+            if self.pos_list[i] < -self.rect.height:
+                self.pos_list[i] = self.rect.height - 1
 
 
 class Engine:
