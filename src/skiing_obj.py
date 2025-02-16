@@ -98,21 +98,3 @@ class Obstacles(pygame.sprite.Sprite):
         self.screen.blit(self.surface, self.rect)
         if self.rect.centery < 0:
             self.kill()
-
-
-class Snowball(Obstacles):
-    """THe Snowball class is a child of the Obstacle class and is used to create snowballs.
-    The update method has been overridden to move snowballs from top to bottom of screen.
-    """
-
-    def __init__(self, image_file, screen):
-        super().__init__(image_file, screen)
-        self.rect.center = (random.choice(list(range(0, X_DIM))), 0)
-
-    def update(self):
-        """Moves snowballs diagonally from top to bottom of screen"""
-        self.rect.centery += 1
-        self.rect.centerx += 1
-        self.screen.blit(self.surface, self.rect)
-        if self.rect.centery > Y_DIM:
-            self.kill()

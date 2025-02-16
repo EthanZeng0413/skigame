@@ -27,11 +27,9 @@ SKIER_PNG_MAP = {
 	"crash": "skier_crash.png", 
 	"tree": "skier_tree.png", 
 	"flag": "skier_flag.png", 
-	"snowball": "skier_snowball.png"
 }
 DEFAULT_SKIER = SKIER_PNG_MAP[0]
 BACKGROUND_IMAGE = "background.jpg"
-WELCOME_IMAGE = "instructions.png"
 
 INSTRUCTIONS_PATH = "res/instructions.txt"
 MUSIC = "res/music.mp3"

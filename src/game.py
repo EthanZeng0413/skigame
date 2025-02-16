@@ -85,7 +85,6 @@ class Engine:
         ### Define Pygame userevents to make trees, flags and snowballs at specified time intervals
         pygame.time.set_timer(CREATETREE_EVENT, CREATETREE_TIMER_DELAY)
         pygame.time.set_timer(CREATEFLAG_EVENT, CREATEFLAG_TIMER_DELAY)
-        pygame.time.set_timer(CREATESNOWBALL_EVENT, CREATESNOWBALL_TIMER_DELAY)
 
         skier = self.skier
         while True:
@@ -110,8 +109,6 @@ class Engine:
                     tree_group.add(skiing_obj.Obstacles(SKIER_PNG_MAP["tree"], self.screen))
                 if event.type == CREATEFLAG_EVENT:
                     flag_group.add(skiing_obj.Obstacles(SKIER_PNG_MAP["flag"], self.screen))
-                if event.type == CREATESNOWBALL_EVENT:
-                    snowball_group.add(skiing_obj.Snowball(SKIER_PNG_MAP["snowball"], self.screen))
 
                 # Update sprite groups
                 tree_and_flag_group.add(tree_group)
