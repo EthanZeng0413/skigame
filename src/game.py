@@ -44,7 +44,6 @@ class Engine:
     def __init__(self, screen, skier: "skiing_obj.Player"):
         self.font = pygame.font.SysFont(("bauhaus93"), 35)
         self.smallfont = pygame.font.SysFont(("bauhaus93"), 25)
-        self.running = False
         self.screen = screen
         self.skier = skier
         print("Game created")
@@ -75,7 +74,6 @@ class Engine:
         ### Declare sprite container groups
         tree_and_flag_group = pygame.sprite.Group() 
         obstacle_group = pygame.sprite.Group() 
-        snowball_group = pygame.sprite.Group() 
         tree_group = pygame.sprite.Group()
         flag_group = pygame.sprite.Group()
 
@@ -111,12 +109,10 @@ class Engine:
                 tree_and_flag_group.add(tree_group)
                 tree_and_flag_group.add(flag_group)
                 obstacle_group.add(tree_group)
-                obstacle_group.add(snowball_group)
 
             # update status
             is_collision = skier.update(flag_group, obstacle_group)
             tree_and_flag_group.update()
-            snowball_group.update()
             self.update_score_panel()
             pygame.display.flip()
             if not self.skier.status and is_collision:
