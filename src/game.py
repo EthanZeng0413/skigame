@@ -15,9 +15,9 @@ class SkiingGame(pygame.sprite.Sprite):
         self.font = pygame.font.SysFont(("bauhaus93"), 35)
         self.smallfont = pygame.font.SysFont(("bauhaus93"), 25)
         self.surface, self.rect = utils.load_png(BACKGROUND_IMAGE)
+        self.bg_blit_offset = self.rect.height - 1
         self.speed = -1
-        self.first_pos = 0
-        self.second_pos = Y_DIM 
+        self.pos_list = [0, self.bg_blit_offset]
         self.display_width = X_DIM
         self.display_height = Y_DIM
         pygame.display.set_caption("滑雪大赛!  Tips: 使用左右方向键移动")
@@ -28,18 +28,18 @@ class SkiingGame(pygame.sprite.Sprite):
 
     def draw_floor(self):
         """Displays game title and scrolls background image"""
-        self.screen.blit(self.surface, (0, self.first_pos + self.speed))
-        self.screen.blit(self.surface, (0, self.second_pos + self.speed))
-        self.first_pos -= 1
-        self.second_pos -= 1
+        for i, pos in enumerate(self.pos_list):
+            self.pos_list[i] += self.speed
+            self.screen.blit(self.surface, (0, pos))
 
-        if self.first_pos < -Y_DIM:
-            self.first_pos = 0
-        if self.second_pos < -Y_DIM:
-            self.second_pos = 0
+            if pos <= -self.bg_blit_offset:
+                self.pos_list[i] = self.bg_blit_offset
+
+        self.pos_list.sort(reverse=True)
+
 
 class Engine:
-    """ The Engine class runs the game by calling the 'playgame' method."""
+    """The Engine class runs the game by calling the 'playgame' method."""
 
     def __init__(self, screen, skier: "skiing_obj.Player"):
         self.font = pygame.font.SysFont(("bauhaus93"), 35)
@@ -72,8 +72,8 @@ class Engine:
         game.playmusic()
 
         ### Declare sprite container groups
-        tree_and_flag_group = pygame.sprite.Group() 
-        obstacle_group = pygame.sprite.Group() 
+        tree_and_flag_group = pygame.sprite.Group()
+        obstacle_group = pygame.sprite.Group()
         tree_group = pygame.sprite.Group()
         flag_group = pygame.sprite.Group()
 
@@ -88,7 +88,7 @@ class Engine:
             game.draw_floor()
 
             # Monitor user-input and create trees/flags/snowballs
-            for event in pygame.event.get(): 
+            for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
@@ -121,7 +121,7 @@ class Engine:
 
 if __name__ == "__main__":
     pygame.init()
-    screen = pygame.display.set_mode((int(X_DIM), int(Y_DIM*1.3)))
+    screen = pygame.display.set_mode((int(X_DIM), int(Y_DIM * 1.3)))
     icon, _ = utils.load_png(ICON_IMAGE)
     pygame.display.set_icon(icon)
     # START GAME
