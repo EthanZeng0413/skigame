@@ -13,7 +13,6 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         self.screen = screen
         self.games_played = 1
-        self.high_score = 0
         self.reset()
 
     def reset(self):
@@ -23,7 +22,6 @@ class Player(pygame.sprite.Sprite):
         self.angle = self.flag_score = 0
         self.health_score = 100
         self.status = True
-        self.high_score = max(self.flag_score, self.high_score)
 
     def turn(self, direction):
         """Loads new image when skier turns and returns angle value"""

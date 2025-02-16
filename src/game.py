@@ -62,11 +62,8 @@ class Engine:
         else:
             good_score_surface = self.font.render(f"YOU SCORED {int(skier.flag_score)} FLAGS!", True, (0, 0, 0))
             self.screen.blit(good_score_surface, good_score_surface.get_rect(center=(X_DIM / 2, Y_DIM * 0.2)))
-            high_score_surface = self.smallfont.render(f"THAT'S {(int(skier.flag_score)) - (int(skier.high_score))} MORE THAN YOUR PRIOR RECORD!", True, (0, 0, 0))
-            self.screen.blit(high_score_surface, high_score_surface.get_rect(center=(X_DIM / 2, Y_DIM / 2)))
-            print(f"Flag score is: {skier.flag_score}, High score is: {skier.high_score}")
+            print(f"Flag score is: {skier.flag_score}")
             print(f"Total games played is: {skier.games_played}")
-            pygame.time.delay(FINAL_DELAY)
 
     def playgame(self):
         clock = pygame.time.Clock()
@@ -122,8 +119,8 @@ class Engine:
             snowball_group.update()
             self.update_score_panel()
             pygame.display.flip()
-            if self.skier.status and is_collision:
-                pygame.time.delay(SKIER_CRASH_DELAY)
+            if not self.skier.status and is_collision:
+                pygame.time.delay(FINAL_DELAY)
 
 
 if __name__ == "__main__":
