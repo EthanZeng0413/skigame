@@ -3,6 +3,7 @@ A 2D simple skiing game using pygame, referencing the https://github.com/joymogl
 
 一个简易的2D滑雪小游戏依赖使用pygame, 参考了 https://github.com/joymoglia/ski_game 项目的资源和代码.
 
+![skigame](./res/image.png)
 
 ## Operating environment
 
